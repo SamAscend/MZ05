@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0b0b" />
+    <meta
+      name="description"
+      content="Milezero One Night Challenge — catat sprint, plank, dan standing long jump."
+    />
+    <title>Milezero — One Night Challenge</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section id="lock-screen" class="lock-screen" aria-labelledby="lock-title">
+      <div class="lock-card">
+        <a class="brand lock-brand" href="#" aria-label="Milezero">
+          <span class="brand-mark">M<span>0</span></span>
+          <span class="brand-name">MILEZERO<span>RUN THE NIGHT</span></span>
+        </a>
+        <p class="eyebrow lock-eyebrow"><span class="eyebrow-line"></span> PRIVATE CREW SESSION</p>
+        <h1 id="lock-title">WELCOME<br /><span>BACK.</span></h1>
+        <p id="lock-description" class="lock-description">Masukkan PIN untuk membuka sesi Milezero di perangkat ini.</p>
+        <form id="unlock-form" class="lock-form" hidden>
+          <label for="unlock-pin">PIN KAMU</label>
+          <div class="pin-input">
+            <input id="unlock-pin" name="pin" type="password" inputmode="numeric" autocomplete="current-password" minlength="6" maxlength="12" pattern="[0-9]{6,12}" placeholder="6–12 digit" required />
+            <button class="pin-visibility" type="button" data-password-toggle="unlock-pin" aria-label="Tampilkan PIN" aria-pressed="false"></button>
+          </div>
+          <button class="button button-light lock-submit" type="submit">BUKA SESI <span>↗</span></button>
+        </form>
+        <form id="setup-form" class="lock-form" hidden>
+          <label for="new-pin">BUAT PIN PRIBADI</label>
+          <div class="pin-input">
+            <input id="new-pin" name="pin" type="password" inputmode="numeric" autocomplete="new-password" minlength="6" maxlength="12" pattern="[0-9]{6,12}" placeholder="6–12 digit angka" required />
+            <button class="pin-visibility" type="button" data-password-toggle="new-pin" aria-label="Tampilkan PIN" aria-pressed="false"></button>
+          </div>
+          <label for="confirm-pin">ULANGI PIN</label>
+          <div class="pin-input">
+            <input id="confirm-pin" name="confirmPin" type="password" inputmode="numeric" autocomplete="new-password" minlength="6" maxlength="12" pattern="[0-9]{6,12}" placeholder="Masukkan PIN sekali lagi" required />
+            <button class="pin-visibility" type="button" data-password-toggle="confirm-pin" aria-label="Tampilkan PIN" aria-pressed="false"></button>
+          </div>
+          <button class="button button-light lock-submit" type="submit">SIMPAN PIN &amp; MASUK <span>↗</span></button>
+        </form>
+        <form id="change-pin-form" class="lock-form" hidden>
+          <label for="current-pin">PIN SEKARANG</label>
+          <div class="pin-input">
+            <input id="current-pin" name="currentPin" type="password" inputmode="numeric" autocomplete="current-password" minlength="6" maxlength="12" pattern="[0-9]{6,12}" placeholder="PIN lama" required />
+            <button class="pin-visibility" type="button" data-password-toggle="current-pin" aria-label="Tampilkan PIN" aria-pressed="false"></button>
+          </div>
+          <label for="replacement-pin">PIN BARU</label>
+          <div class="pin-input">
+            <input id="replacement-pin" name="newPin" type="password" inputmode="numeric" autocomplete="new-password" minlength="6" maxlength="12" pattern="[0-9]{6,12}" placeholder="6–12 digit angka" required />
+            <button class="pin-visibility" type="button" data-password-toggle="replacement-pin" aria-label="Tampilkan PIN" aria-pressed="false"></button>
+          </div>
+          <label for="confirm-replacement-pin">ULANGI PIN BARU</label>
+          <div class="pin-input">
+            <input id="confirm-replacement-pin" name="confirmNewPin" type="password" inputmode="numeric" autocomplete="new-password" minlength="6" maxlength="12" pattern="[0-9]{6,12}" placeholder="Masukkan PIN baru sekali lagi" required />
+            <button class="pin-visibility" type="button" data-password-toggle="confirm-replacement-pin" aria-label="Tampilkan PIN" aria-pressed="false"></button>
+          </div>
+          <button class="button button-light lock-submit" type="submit">SIMPAN PIN BARU <span>↗</span></button>
+        </form>
+        <div class="lock-secondary-actions">
+          <button id="forgot-pin-button" class="text-button" type="button" hidden>LUPA PIN? RESET PIN</button>
+          <button id="cancel-pin-change" class="text-button" type="button" hidden>BATAL &amp; KEMBALI</button>
+        </div>
+        <p id="lock-message" class="lock-message" role="status"></p>
+        <p class="lock-disclaimer">PIN hanya mengunci tampilan di browser/perangkat ini. Ini bukan login akun atau perlindungan server.</p>
+      </div>
+      <div class="lock-footer">MILEZERO — KEEP MOVING FORWARD.</div>
+    </section>
+    <div class="app-shell" hidden>
+      <aside class="sidebar" aria-label="Navigasi utama">
+        <a class="brand" href="#home" aria-label="Milezero beranda">
+          <span class="brand-mark">M<span>0</span></span>
+          <span class="brand-name">MILEZERO<span>RUN THE NIGHT</span></span>
+        </a>
+
+        <p class="nav-label">MENU</p>
+        <nav class="side-nav">
+          <a class="nav-link active" href="#home"><span class="nav-icon">⌂</span>Beranda</a>
+          <a class="nav-link" href="#challenge"><span class="nav-icon">◎</span>Challenge</a>
+          <a class="nav-link" href="#tracker"><span class="nav-icon">↗</span>GPS tracker</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="night-card">
+            <span class="live-dot"></span>
+            <div><strong>ONE NIGHT</strong><span>MOVE TOGETHER.</span></div>
+            <span class="night-arrow">↗</span>
+          </div>
+          <p class="sidebar-foot">BUILT FOR THE CREW<br />© MILEZERO 2026</p>
+        </div>
+      </aside>
+
+      <main id="home" class="main-content">
+        <header class="topbar">
+          <div class="mobile-brand"><span class="brand-mark">M<span>0</span></span><span>MILEZERO</span></div>
+          <p class="breadcrumb">CREW / <span>ONE NIGHT CHALLENGE</span></p>
+          <div class="topbar-right">
+            <span class="event-status"><i></i> EVENT MODE</span>
+            <button id="change-pin-button" class="lock-button" type="button" aria-label="Ganti PIN">GANTI PIN</button>
+            <button id="lock-button" class="lock-button" type="button" aria-label="Kunci sesi">KUNCI <span>⌑</span></button>
+            <span class="avatar" aria-label="Milezero crew">MZ</span>
+          </div>
+        </header>
+
+        <section class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow"><span class="eyebrow-line"></span> MILEZERO PRESENTS</p>
+            <h1>ONE NIGHT<br /><span>CHALLENGE.</span></h1>
+            <p class="hero-description">Tiga ronde. Satu malam. Kasih yang terbaik dan<br class="desktop-break" /> buktikan bareng crew.</p>
+            <a class="button button-light" href="#challenge">MULAI CHALLENGE <span>↘</span></a>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-orbit orbit-one"></div>
+            <div class="art-orbit orbit-two"></div>
+            <div class="art-core">M<span>0</span></div>
+            <span class="art-label label-top">JAKARTA · ID</span>
+            <span class="art-label label-bottom">EST. 2020 / KEEP MOVING</span>
+            <span class="art-cross cross-one">+</span><span class="art-cross cross-two">+</span>
+            <span class="art-index">01 — 03</span>
+          </div>
+          <div class="hero-index"><span>01</span> / CHALLENGE SERIES</div>
+        </section>
+
+        <section class="overview" aria-label="Ringkasan challenge">
+          <div class="overview-item">
+            <span class="overview-label">TOTAL RONDE</span>
+            <strong>03<span class="unit"> RONDE</span></strong>
+          </div>
+          <div class="overview-item">
+            <span class="overview-label">TOTAL ATTEMPT</span>
+            <strong>06<span class="unit"> KESEMPATAN</span></strong>
+          </div>
+          <div class="overview-item">
+            <span class="overview-label">GPS TRACKING</span>
+            <strong id="overview-gps" class="overview-live">SIAP <span class="live-dot"></span></strong>
+          </div>
+          <div class="overview-item overview-date">
+            <span class="overview-label">YOUR SESSION</span>
+            <strong id="session-date">—</strong>
+          </div>
+        </section>
+
+        <section id="challenge" class="challenge-section">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow"><span class="eyebrow-line"></span> SHOW WHAT YOU GOT</p>
+              <h2>THE <span>CHALLENGE</span></h2>
+            </div>
+            <p class="section-note">Catat hasil tiap ronde.<br />Skor terbaikmu tersimpan di perangkat ini.</p>
+          </div>
+
+          <article class="challenge-card sprint-card">
+            <div class="round-number">01</div>
+            <div class="challenge-info">
+              <p class="round-label">ROUND 1 <span>·</span> SPEED</p>
+              <h3>Sprint <span>50 m</span></h3>
+              <p class="challenge-description">Dua kali kesempatan. Ambil waktu tercepatmu.</p>
+              <div class="attempt-row" id="sprint-attempts" aria-label="Hasil sprint">
+                <span class="attempt-chip">ATTEMPT 01 <b>—</b></span>
+                <span class="attempt-chip">ATTEMPT 02 <b>—</b></span>
+              </div>
+            </div>
+            <div class="challenge-action">
+              <div class="score-box"><span>BEST TIME</span><strong id="sprint-best">—<small> sec</small></strong></div>
+              <button id="sprint-button" class="button button-dark">START SPRINT <span>↗</span></button>
+            </div>
+          </article>
+
+          <article class="challenge-card plank-card">
+            <div class="round-number">02</div>
+            <div class="challenge-info">
+              <p class="round-label">ROUND 2 <span>·</span> ENDURANCE</p>
+              <h3>Plank <span>Challenge</span></h3>
+              <p class="challenge-description">Tahan posisi dengan benar. Maksimal dua menit.</p>
+              <div class="plank-progress" aria-label="Progres plank">
+                <span id="plank-progress-bar"></span>
+              </div>
+              <p id="plank-hint" class="small-hint">Jaga form. Waktu maksimal 02:00.</p>
+            </div>
+            <div class="challenge-action">
+              <div class="score-box"><span>HOLD TIME</span><strong id="plank-time">02:00</strong></div>
+              <button id="plank-button" class="button button-dark">START PLANK <span>↗</span></button>
+            </div>
+          </article>
+
+          <article class="challenge-card jump-card">
+            <div class="round-number">03</div>
+            <div class="challenge-info">
+              <p class="round-label">ROUND 3 <span>·</span> POWER</p>
+              <h3>Standing <span>Long Jump</span></h3>
+              <p class="challenge-description">Tiga kali kesempatan. Catat lompatan sah terjauh.</p>
+              <div class="attempt-row" id="jump-attempts" aria-label="Hasil long jump">
+                <span class="attempt-chip">01 <b>—</b></span>
+                <span class="attempt-chip">02 <b>—</b></span>
+                <span class="attempt-chip">03 <b>—</b></span>
+              </div>
+            </div>
+            <div class="challenge-action jump-action">
+              <div class="score-box"><span>BEST JUMP</span><strong id="jump-best">—<small> cm</small></strong></div>
+              <div class="jump-entry">
+                <label class="sr-only" for="jump-distance">Jarak lompatan dalam centimeter</label>
+                <input id="jump-distance" type="number" min="1" max="1000" step="1" inputmode="numeric" placeholder="cm" />
+                <button id="jump-button" class="button button-dark">RECORD <span>↗</span></button>
+              </div>
+              <p id="jump-hint" class="small-hint">Masukkan jarak yang sah dalam cm.</p>
+            </div>
+          </article>
+        </section>
+
+        <section id="tracker" class="tracker-section">
+          <div class="section-heading tracker-heading">
+            <div>
+              <p class="eyebrow"><span class="eyebrow-line"></span> EVERY STEP COUNTS</p>
+              <h2>YOUR <span>TRACKER</span></h2>
+            </div>
+            <p class="section-note">Lokasi diproses di perangkat ini.<br />Tracking aktif selama halaman berjalan.</p>
+          </div>
+          <div class="tracker-panel">
+            <div class="map-panel">
+              <div class="map-grid"></div>
+              <svg class="route-svg" viewBox="0 0 600 300" preserveAspectRatio="none" aria-label="Visualisasi skematis rute GPS">
+                <path id="route-line" d="" />
+                <g id="route-person" transform="translate(300 150)" role="img" aria-label="Posisi kamu">
+                  <circle class="person-marker-bg" r="11" />
+                  <circle class="person-head" cx="0" cy="-4" r="2.2" />
+                  <path class="person-body" d="M-4.4 4.6  -3.2-.1Q-2.8-1.1-1.8-1.1H1.8Q2.8-1.1 3.2-.1L4.4 4.6H2.7L1.7 1.8 2.1 7H-2.1L-1.7 1.8-2.7 4.6Z" />
+                </g>
+              </svg>
+              <div id="map-placeholder" class="map-placeholder">
+                <span class="location-glyph">⌖</span>
+                <strong>RUTE KAMU ADA DI SINI</strong>
+                <span>NYALAKAN GPS UNTUK MULAI MELACAK</span>
+              </div>
+              <div class="map-top-label"><span class="live-dot"></span> LIVE ROUTE</div>
+              <div class="map-coordinates" id="coordinates">GPS BELUM AKTIF</div>
+              <div class="map-scale">ROUTE PREVIEW / SKEMATIS</div>
+            </div>
+            <div class="tracker-data">
+              <div class="tracker-data-head"><span>SESSION STATS</span><span id="gps-state" class="gps-state">● GPS OFF</span></div>
+              <div class="distance-stat"><span>TOTAL DISTANCE</span><strong id="distance-value">0.00 <small>km</small></strong></div>
+              <div class="tracker-stats">
+                <div><span>SESSION TIME</span><strong id="gps-time">00:00</strong></div>
+                <div><span>AVG. PACE</span><strong id="gps-pace">— <small>/km</small></strong></div>
+              </div>
+              <p class="gps-message" id="gps-message" role="status">Aktifkan GPS untuk merekam jarak dan rute perjalananmu.</p>
+              <button id="gps-button" class="button button-light gps-button"><span>⌖</span> AKTIFKAN GPS</button>
+              <button id="gps-reset" class="text-button" hidden>RESET SESSION</button>
+              <p class="gps-disclaimer">Butuh izin lokasi dan HTTPS. Tracking berjalan saat halaman aktif; browser bisa menghentikannya di background atau saat layar terkunci. Ini pratinjau rute, bukan peta jalan.</p>
+            </div>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <span>MILEZERO — KEEP MOVING FORWARD.</span>
+          <a href="#home">BACK TO TOP ↑</a>
+        </footer>
+      </main>
+    </div>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
